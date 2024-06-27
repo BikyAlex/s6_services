@@ -1,0 +1,25 @@
+#!/bin/execlineb -P
+
+# if -t { -n "$VIRTUALIZATION" } exit 0
+# note that -n in execline if means !, i.e. negate the result
+# the if above is from sh, meaning -n = if not null / empty
+# need 2 find a way 2 eltest empty
+# maybe if -t { eltest -n "$VIRTUALIZATION" = "" }
+
+ifelse { eltest -n "$VIRTUALIZATION" } exit 0
+
+envfile /etc/s6-rc/config/hwclock.conf
+importas -uD "UTC" HARDWARECLOCK HARDWARECLOCK
+
+# note: importas -D VALUE is a definition for the variable that follows, meaning the var will never be empty here
+
+
+ifelse { eltest -n "$HARDWARECLOCK" } {
+     foreground { s6-echo "Setting up RTC to $HARDWARECLOCK..." }
+     ifelse { eltest "$HARDWARECLOCK" = "UTC" } 
+     	{ hwclock --systz --utc --noadjfile } 
+	# else
+	{ hwclock --systz --localtime --noadjfile } 
+}
+# else
+emergency_shell

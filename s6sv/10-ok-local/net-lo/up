@@ -1,0 +1,2 @@
+#!/bin/execline -P
+exec ip link set up dev lo

@@ -1,0 +1,20 @@
+#!/bin/execlineb -P
+if { fdmove -c 1 2 s6-echo -- "\033[1m=> Loading sysctl(8) settings...\033[m" }
+
+#forx PAT {
+#	/run/sysctl.d/*.conf
+#	/etc/sysctl.d/*.conf
+#	/usr/local/lib/sysctl.d/*.conf
+#	/usr/lib/sysctl.d/*.conf
+#	/etc/sysctl.conf
+#}
+#importas -u PAT PAT
+#elglob -0 file ${PAT}
+#if {
+##	redirfd -c 2 /dev/null
+#	foreground { eltest -f ${file} }
+#}
+#foreground { fdmove -c 1 2 s6-echo -- "* Applying ${file} ..." }
+#sysctl -p $file
+
+if { eltest -f /etc/sysctl.conf } sysctl -p /etc/sysctl.conf

@@ -1,0 +1,2 @@
+#!/bin/execlineb -P
+fdmove -c 1 2 s6-echo "dracut-shutdown: up"

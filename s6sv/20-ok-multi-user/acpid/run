@@ -1,0 +1,7 @@
+#!/bin/execlineb -P
+fdmove -c 2 1
+
+envfile -I /etc/s6-rc/config/acpid.conf 
+importas -uD "-l" OPTS OPTS
+
+exec acpid -f ${OPTS}

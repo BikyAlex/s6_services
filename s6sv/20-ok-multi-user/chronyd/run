@@ -1,0 +1,11 @@
+#!/bin/execlineb -P
+fdmove -c 1 2
+envfile -I /etc/s6-rc/config/chronyd.conf 
+importas -uD "" OPTS OPTS
+
+ifelse { eltest -w /var/run } {
+	foreground { install -d -m 750 -o chrony -g chrony /var/run/chrony }
+	s6-envuidgid chrony exec chronyd -n -u chrony ${OPTS}
+}
+foreground { install -d -m 750 -o chrony -g chrony /run/chrony }
+s6-envuidgid chrony exec chronyd -n -u chrony ${OPTS}

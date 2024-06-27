@@ -1,0 +1,5 @@
+#!/bin/execlineb -P
+##s6-envdir -i /run/disk-devices
+##importas -i swap swap
+##s6-swapoff /dev/${swap}
+swapoff -a

@@ -1,0 +1,7 @@
+#!/bin/execlineb -P
+foreground { fdmove -c 1 2 s6-echo -- "\033[1m=> Mounting pseudo-filesystem: /proc\033[m" }
+
+foreground {
+    if -n { eltest -e /proc/mounts }
+        if -n { mountpoint -q /proc } s6-mount -o nosuid,noexec,nodev -wt proc proc /proc
+}

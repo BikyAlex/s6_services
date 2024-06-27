@@ -1,0 +1,13 @@
+#!/bin/execlineb -P
+foreground { fdmove -c 1 2 s6-echo -- "\033[1m=> Mounting pseudo-filesystem: /dev/pts /dev/shm\033[m" }
+
+foreground { s6-mkdir -p /dev/pts /dev/shm }
+
+foreground {
+    if -n { mountpoint -q /dev/pts }
+    mount -t devpts -o mode=0620,gid=5,nosuid,noexec devpts /dev/pts 
+}
+foreground {
+    if -n { mountpoint -q /dev/shm }
+    mount -t tmpfs -o mode=1777,nosuid,nodev shm /dev/shm
+}

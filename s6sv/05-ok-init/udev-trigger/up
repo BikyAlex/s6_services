@@ -1,0 +1,3 @@
+#!/bin/execlineb -P
+if { udevadm trigger --action=add --type=subsystems }
+udevadm trigger --action=add --type=devices

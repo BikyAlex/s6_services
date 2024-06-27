@@ -1,0 +1,13 @@
+#!/bin/execlineb -P
+
+ifelse { eltest -n "$VIRTUALIZATION" } exit 0
+
+envfile /etc/s6-rc/config/hwclock.conf
+importas -uD "UTC" HARDWARECLOCK HARDWARECLOCK
+
+if -t { eltest -n "$HARDWARECLOCK" } {
+     ifelse { eltest "$HARDWARECLOCK" = "UTC" } 
+     	{ hwclock --systohc --utc --noadjfile } 
+	# else
+	hwclock --systohc --localtime --noadjfile  
+}

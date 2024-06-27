@@ -1,0 +1,10 @@
+#!/bin/execlineb -P
+foreground { fdmove -c 1 2 s6-echo -- "\033[1m=> Mounting pseudo-filesystem: /tmp\033[m" }
+envfile -I /etc/s6/config/mount-tmp.conf
+importas -uD "yes" MOUNT MOUNT
+
+foreground {
+    if -t { eltest ${MOUNT} = "yes" } 
+    if -n { mountpoint -q /tmp }
+        s6-mount -t tmpfs -o defaults,nosuid,nodev tmpfs /tmp
+}

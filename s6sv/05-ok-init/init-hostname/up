@@ -1,0 +1,3 @@
+#!/bin/execlineb -P
+if -t { eltest -s /etc/hostname } backtick -n -E HOSTNAME { head -1 /etc/hostname }
+if -t { eltest -n $HOSTNAME } exec s6-hostname $HOSTNAME

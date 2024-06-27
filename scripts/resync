@@ -1,0 +1,15 @@
+#!/bin/execlineb
+if { s6-test -f /etc/default/void-stage-2 }
+foreground {
+  redirfd -r 0 /etc/default/void-stage-2
+  forstdin SVC
+  importas -u SVC SVC
+  if -n { test -h /run/service/${SVC} }
+  foreground {
+    if { test -d /etc/sv/${SVC}/log }
+    mkdir -p /run/runit/supervise.${SVC}-log
+  }
+  foreground { mkdir -p /run/runit/supervise.${SVC} }
+  ln -snf /etc/sv/${SVC} /run/service
+}
+s6-svscanctl -an /run/service

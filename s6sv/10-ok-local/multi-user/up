@@ -1,0 +1,2 @@
+#!/bin/execlineb -P
+if { fdmove -c 1 2 s6-echo -- "\033[1m=> Multi-user target\033[m" }

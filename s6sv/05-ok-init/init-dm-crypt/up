@@ -1,0 +1,10 @@
+#!/bin/execlineb -P
+foreground {
+	if { eltest -e /etc/crypttab }
+	foreground { fdmove -c 1 2 s6-echo -- "\033[1m=> Activating encrypted devices...\033[m" }
+	if { eltest -e /etc/s6-rc/config/crypt.awk }
+	if { awk -f /etc/s6-rc/config/crypt.awk /etc/crypttab }
+	if { eltest -x /usr/bin/vgchange }
+	foreground { fdmove -c 1 2 s6-echo -- "\033[1m=> Activating LVM devices for dm-crypt...\033[m" }
+	vgchange --sysinit -a y
+}

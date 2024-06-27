@@ -1,0 +1,4 @@
+#!/bin/execlineb -P
+foreground { fdmove -c 1 2 s6-echo -- "\033[1m=> Remounting root rw...\033[m" }
+foreground { mount -o remount,rw / }
+foreground { sh /etc/s6-rc/scripts/log-service-reload.sh }

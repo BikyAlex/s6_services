@@ -1,0 +1,6 @@
+#!/bin/execlineb -P
+fdmove -c 1 2
+envfile -I /etc/s6-rc/config/cronie.conf 
+importas -uD "" OPTS OPTS
+
+exec cronie-crond -n ${OPTS}

@@ -1,0 +1,6 @@
+#!/bin/execlineb -P
+fdmove -c 2 1
+envfile -I /etc/s6-rc/config/dhcpcd.conf 
+importas -uD "-M" OPTS OPTS
+
+exec dhcpcd -B eth0 ${OPTS}

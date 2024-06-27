@@ -1,0 +1,4 @@
+#!/bin/execlineb -P
+if { s6-mkdir -pm 0755 /run/lock }
+if { s6-mkdir -pm 0755 /run/log }
+s6-mkdir -pm 0755 /run/user
