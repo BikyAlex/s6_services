@@ -4,6 +4,9 @@ Special thank you to [Laurent Bercot](https://skarnet.org/), a.k.a. ska or skarn
 
 Links of interest, but very outdated.
 
+
 [https://github.com/Duncaen/void-s6-rc/tree/master](https://github.com/Duncaen/void-s6-rc/tree/master)
+
 [https://github.com/st3r4g/void-s6](https://github.com/st3r4g/void-s6)
+
 [https://www.reddit.com/r/voidlinux/comments/khn1jy/adventures_in_booting_void_on_s6/](https://www.reddit.com/r/voidlinux/comments/khn1jy/adventures_in_booting_void_on_s6/)
